@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         getNotes();
         listId.setLayoutManager(LinearLayoutManager(this));
-//        note = intent.getSerializableExtra("noteHeading") as NoteEntity
         setOnClickListener()
     }
 
@@ -79,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
                         }
                         else if (RecyclerItemClickListener.isViewClicked(editNote, motionEvent)) {
-                            Toast.makeText(applicationContext, "Work in progress", Toast.LENGTH_SHORT).show()
+                            editMyNote()
                         }
 
                     }
@@ -91,6 +90,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    private fun editMyNote() {
+        Toast.makeText(applicationContext, "Work in progress", Toast.LENGTH_SHORT).show()
     }
 
     private fun deleteMyNotes(notes: NoteEntity?) {
