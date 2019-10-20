@@ -4,6 +4,7 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynoteusingroomdatabasewithkotlin.NoteEntity
@@ -25,10 +26,6 @@ class NoteAdapter(activity: Activity, notes: List<NoteEntity>)
         return NoteAdapterViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int {
-       return notes.size
-    }
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val myViewHolder = holder as NoteAdapterViewHolder
         val notesItem = notes[position]
@@ -36,13 +33,23 @@ class NoteAdapter(activity: Activity, notes: List<NoteEntity>)
         myViewHolder.mDescription.setText(notesItem.noteDescription)
     }
 
+    override fun getItemCount(): Int {
+        return notes.size
+    }
+
+    fun getNoteList(): List<NoteEntity> {
+        return notes
+    }
+
     inner class NoteAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val mHeading: TextView
         val mDescription: TextView
+        val mDeleteNote : ImageView
 
         init {
             mHeading = itemView.findViewById(R.id.heading)
             mDescription = itemView.findViewById(R.id.description)
+            mDeleteNote = itemView.findViewById(R.id.deleteNote)
         }
     }
 

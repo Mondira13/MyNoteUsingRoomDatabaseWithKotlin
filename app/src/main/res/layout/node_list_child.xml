@@ -7,12 +7,10 @@
     android:layout_margin="8dp"
     app:cardElevation="2dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp"
-        >
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/heading"
@@ -26,11 +24,22 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/heading"
             android:text="Description"
             android:textSize="16sp"
             android:textColor="#8BC34A" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/deleteNote"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_noun_delete"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:padding="8dp"
+            />
+
+    </RelativeLayout>
 
 
 </androidx.cardview.widget.CardView>
