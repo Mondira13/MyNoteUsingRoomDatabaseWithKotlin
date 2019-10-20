@@ -17,10 +17,7 @@ class AddNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
-
-
         setOnClickListener()
-
     }
 
     private fun setOnClickListener() {
@@ -30,18 +27,21 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     private fun addNewNote() {
-        var noteHeading = heading.text.toString()
-        var noteDescription = description.text.toString()
+        val noteHeading = heading.text.toString()
+        val noteDescription = description.text.toString()
 
 
         class SaveNote : AsyncTask<Void, Void, Void>() {
 
             override fun doInBackground(vararg params: Void?): Void? {
                 val noteEntity = NoteEntity()
-                noteEntity.noteHeading = noteHeading
-                noteEntity.noteDescription = noteDescription
-
-                DatabaseClient(applicationContext).getInstance(getApplicationContext()).getAppDatabase().noteDao().insert(noteEntity);
+                if (noteHeading.isNotEmpty() && noteDescription.isNotEmpty()) {
+                    noteEntity.noteHeading = noteHeading
+                    noteEntity.noteDescription = noteDescription
+                    DatabaseClient(applicationContext).getInstance(getApplicationContext()).getAppDatabase().noteDao().insert(noteEntity);
+                }else{
+                    Toast.makeText(applicationContext,"Please enter valid input",Toast.LENGTH_SHORT).show();
+                }
                 return null;
             }
 
@@ -57,7 +57,5 @@ class AddNoteActivity : AppCompatActivity() {
         save.execute()
 
     }
-
-
 
 }
