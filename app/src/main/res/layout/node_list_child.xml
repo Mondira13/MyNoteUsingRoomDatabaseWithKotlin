@@ -30,9 +30,19 @@
             android:textColor="#8BC34A" />
 
         <ImageView
+            android:id="@+id/editNote"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_noun_edit"
+            android:layout_toLeftOf="@id/deleteNote"
+            android:layout_centerInParent="true"
+            android:padding="8dp"
+            />
+
+        <ImageView
             android:id="@+id/deleteNote"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_noun_delete"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"

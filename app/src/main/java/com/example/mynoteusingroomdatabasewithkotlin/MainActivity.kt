@@ -60,6 +60,8 @@ class MainActivity : AppCompatActivity() {
         listId.addOnItemTouchListener(RecyclerItemClickListener(this, listId, object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int, motionEvent : MotionEvent) {
                        val deleteNote : ImageView = view.findViewById(R.id.deleteNote)
+                        val editNote : ImageView = view.findViewById(R.id.editNote)
+
 
                         if (RecyclerItemClickListener.isViewClicked(deleteNote, motionEvent)) {
                             val builder = AlertDialog.Builder(this@MainActivity)
@@ -75,6 +77,9 @@ class MainActivity : AppCompatActivity() {
                             val ad = builder.create()
                             ad.show()
 
+                        }
+                        else if (RecyclerItemClickListener.isViewClicked(editNote, motionEvent)) {
+                            Toast.makeText(applicationContext, "Work in progress", Toast.LENGTH_SHORT).show()
                         }
 
                     }
@@ -95,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                 if (notes != null) {
                     DatabaseClient(applicationContext).getInstance(applicationContext).getAppDatabase().noteDao().delete(notes)
                 }else{
-                    Toast.makeText(applicationContext, "Error occure..!!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Error occure..!!", Toast.LENGTH_SHORT).show()
                 }
                 return null
             }
