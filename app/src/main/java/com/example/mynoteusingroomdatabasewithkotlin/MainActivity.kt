@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mynoteusingroomdatabasewithkotlin.adapter.NoteAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -31,7 +32,10 @@ class MainActivity : AppCompatActivity() {
 
             protected override fun onPostExecute(notes: List<NoteEntity>) {
                 super.onPostExecute(notes)
-                val adapter = NoteAdapter(this@MainActivity, notes)
+                val adapter = NoteAdapter(
+                    this@MainActivity,
+                    notes
+                )
                 listId.setAdapter(adapter)
             }
         }
