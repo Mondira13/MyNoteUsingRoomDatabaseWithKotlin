@@ -1,15 +1,11 @@
 package com.example.mynoteusingroomdatabasewithkotlin
 
-import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_add_note.*
-import android.widget.Toast
 import android.content.Intent
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import kotlinx.android.synthetic.main.activity_main.*
+import android.os.AsyncTask
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_add_note.*
 
 
 class AddNoteActivity : AppCompatActivity() {
@@ -30,26 +26,24 @@ class AddNoteActivity : AppCompatActivity() {
         val noteHeading = heading.text.toString()
         val noteDescription = description.text.toString()
 
+        val noteEntity = NoteEntity()
+        if (noteHeading.isNotEmpty() && noteDescription.isNotEmpty()) {
+            noteEntity.noteHeading = noteHeading
+            noteEntity.noteDescription = noteDescription
+        }
 
-        class SaveNote : AsyncTask<Void, Void, Void>() {
+        class SaveNote : AsyncTask<NoteEntity, Void, Boolean>() {
 
-            override fun doInBackground(vararg params: Void?): Void? {
-                val noteEntity = NoteEntity()
-                if (noteHeading.isNotEmpty() && noteDescription.isNotEmpty()) {
-                    noteEntity.noteHeading = noteHeading
-                    noteEntity.noteDescription = noteDescription
-                    DatabaseClient(applicationContext).getInstance(getApplicationContext()).getAppDatabase().noteDao().insert(noteEntity);
-                }else{
-                    Toast.makeText(applicationContext,"Please enter valid input",Toast.LENGTH_SHORT).show();
-                }
-                return null;
+            override fun doInBackground(vararg params: NoteEntity?): Boolean {
+                DatabaseClient(applicationContext).getInstance(getApplicationContext()).getAppDatabase().noteDao().insert(noteEntity);
+                return true
             }
 
-            override fun onPostExecute(aVoid: Void) {
+            override fun onPostExecute(aVoid: Boolean) {
                 super.onPostExecute(aVoid)
                 finish()
+                Toast.makeText(applicationContext, "Note Added successfully", Toast.LENGTH_SHORT).show();
                 startActivity(Intent(applicationContext, MainActivity::class.java))
-                Toast.makeText(applicationContext, "Saved", Toast.LENGTH_LONG).show()
             }
         }
 
