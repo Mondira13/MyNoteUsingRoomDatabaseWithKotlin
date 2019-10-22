@@ -5,34 +5,48 @@
     android:layout_height="match_parent"
     tools:context=".AddNoteActivity">
 
-    <EditText
-        android:id="@+id/heading"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Heading"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        />
+        android:layout_centerInParent="true"
+        android:layout_margin="24dp"
+        >
 
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/heading"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:hint="Enter Description" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            >
 
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:textSize="20sp"
-        android:background="#8C219E"
-        android:textColor="#fff"
-        android:layout_alignParentBottom="true"
-        />
+            <EditText
+                android:id="@+id/heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Heading"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"/>
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/heading"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:hint="Enter Description" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:textSize="20sp"
+                android:background="#8C219E"
+                android:textColor="#fff"
+                android:layout_margin="20dp"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
